@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Care innovation</title>
+    <a href="login.html"></a>
+                
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            color: #1c1b1b;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #e7773e;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            background-color: #9db6d1;
+        }
+
+        /* Content Styles */
+        .main-content {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+        .centered-text {
+            text-align: center;
+            text-decoration-color: #f0f0f0;
+        }
+        .layout-box {
+            border: 2px solid #333; /* Border color and width */
+            padding: 20px; /* Padding inside the box */
+            width: 300px; /* Width of the box */
+            margin: 0 auto; /* Center the box horizontally */
+        }
+    </style>
+</head>
+<body style="background-color: rgb(67, 126, 227);">
+    
+    <nav>
+        <div class="container">
+            <ul>
+               
+                <li><a href="#" id="home-link">Home</a></li>
+                <li><a href="#" id="resources-link">HealthResources</a></li>
+                <li><a href="#" id="tips-link">Safety Tips</a></li>
+                <li><a href="#" id="contact-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="main-content">
+            <h1 style="text-align: center;">Benefiting You is our Priority</h1>
+            <p>Health care, or healthcare, is the improvement of health via the prevention, diagnosis, treatment, amelioration or cure of disease, illness, injury, and other physical and mental impairments in people. Health care is delivered by health professionals and allied health fields. Medicine, dentistry, pharmacy, midwifery, nursing, optometry, audiology, psychology, occupational therapy, physical therapy, athletic training, and other health professions all constitute health care. The term includes work done in providing primary care, secondary care, and tertiary care, as well as in public health.</p>
+            <p>Explore the menu to access different sections of the website.</p>
+        </div>
+    </div>
+    <div class="layout-box">
+    <div class="centered-text">
+        <div class="container">
+            <div>
+                <div class="existing-box">
+            <h2 style="text-decoration-color: darkturquoise;">Check Your Health Status</h2>
+            <form id="healthForm">
+                <label for="symptoms">Enter Symptoms:</label>
+                <input type="text" id="symptoms" name="symptoms"><br><br>
+                <button type="submit">Check</button>
+            </form>
+        </div>
+    </div>
+        
+            <div id="result"></div>
+            
+            <script>
+                document.getElementById('healthForm').addEventListener('submit', function(event) {
+                    event.preventDefault();
+            
+                    var symptoms = document.getElementById('symptoms').value.toLowerCase();
+                    var issues = [];
+                    var recommendedTablets = {
+                        fever: ['Paracetamol', 'Ibuprofen'],
+                        cold: ['Citrigen', 'Dolo'],
+                        COVID19: ['Corticosteroid', 'Tocilizumab'],
+                        diabetes: ['Metformin','Sulfonylureas'],
+                        cancer: ['Consult a doctor for appropriate medication'],
+    
+                        fatigue: ['Vitamin B12 supplements', 'Iron supplements']
+                    };
+            
+                    if (symptoms.includes('high body temperature')) {
+            issues.push('Fever');
+        }
+        if (symptoms.includes('sneezing')) {
+            issues.push('Cold');
+        }
+        if (symptoms.includes('loss of taste or smell')) {
+            issues.push('COVID-19');
+        }
+        if (symptoms.includes('frequent urination')) {
+            issues.push('Diabetes');
+        }
+        if (symptoms.includes('persistent cough')) {
+            issues.push('Cancer');
+        }
+        if (symptoms.includes('fatigue')) {
+            issues.push('Fatigue');
+        }
+            
+                    var result = issues.length > 0 ? issues.join(', ') : 'No specific health issue detected.';
+                    var tablets = issues.reduce(function(acc, issue) {
+                        return acc.concat(recommendedTablets[issue.toLowerCase()] || []);
+                    }, []);
+            
+                    var tabletsHtml = tablets.length > 0 ? '<p>Recommended Tablets: ' + tablets.join(', ') + '</p>' : '';
+            
+                    document.getElementById('result').innerHTML = '<p>Health Issues: ' + result + '</p>' + tabletsHtml;
+                });
+            </script>
+        </script>
+    </div>
+
+    <script>
+        // JavaScript code for adding features to the crisis response website
+
+        // Function to handle navigation link clicks
+        function handleNavLinkClick(event) {
+            event.preventDefault();
+            const targetId = event.target.id;
+            switch (targetId) {
+                
+                case 'home-link':
+                    displayHome();
+                    break;
+                case 'resources-link':
+                    displayHealthResources();
+                    break;
+                case 'tips-link':
+                    displaySafetyTips();
+                    break;
+                case 'contact-link':
+                    displayContact();
+                    break;
+                default:
+                    break;
+            }
+        }
+    
+        // Function to display the home section
+     function displayHome() {
+            const mainContent = document.querySelector('.main-content');
+            mainContent.innerHTML = `
+                <h1>Benefiting You is our Priority</h1>
+            <p>Health care, or healthcare, is the improvement of health via the prevention, diagnosis, treatment, amelioration or cure of disease, illness, injury, and other physical and mental impairments in people. Health care is delivered by health professionals and allied health fields. Medicine, dentistry, pharmacy, midwifery, nursing, optometry, audiology, psychology, occupational therapy, physical therapy, athletic training, and other health professions all constitute health care. The term includes work done in providing primary care, secondary care, and tertiary care, as well as in public health.</p>
+            `;
+     }
+
+        // Function to display the About section
+        function displayHealthResources() {
+            const mainContent = document.querySelector('.main-content');
+            mainContent.innerHTML = `
+                
+                <h2>Emergency Resources</h2>
+                <p>World Health Organization (WHO) Emergency and Humanitarian Action: The WHO provides updates, guidelines, and resources related to emergencies and humanitarian action, including healthcare innovations tailored to emergency response.
+
+Centers for Disease Control and Prevention (CDC) Emergency Preparedness and Response: The CDC offers a wealth of information on emergency preparedness, response, and recovery, including healthcare innovations and technologies utilized in various emergency situations.
+
+Emergency Medical Services (EMS) World: EMS World is a leading resource for emergency medical services professionals, offering news, articles, and information on innovative technologies and practices in emergency healthcare.
+
+Global Health Security Agenda (GHSA): GHSA is an international partnership dedicated to enhancing global health security and preparedness. Their website provides resources and updates on healthcare innovations for emergency response.
+
+Emergency Medicine Organizations: Organizations such as the American College of Emergency Physicians (ACEP) and the International Federation for Emergency Medicine (IFEM) often provide resources and publications on healthcare innovations in emergency medicine.
+
+Disaster Response and Relief Organizations: Organizations like the International Committee of the Red Cross (ICRC), Médecins Sans Frontières (Doctors Without Borders), and Direct Relief work in emergency settings worldwide and often highlight healthcare innovations utilized in their operations.
+
+Academic Journals and Publications: Journals like Disaster Medicine and Public Health Preparedness, Prehospital and Disaster Medicine, and the International Journal of Emergency Medicine publish research and articles on healthcare innovations in emergency settings.</p>
+                <!-- Add more content here as needed -->
+                <!-- Add more content here as needed -->
+            `;
+        }
+
+        // Function to display the safety tips section
+        function displaySafetyTips() {
+            const mainContent = document.querySelector('.main-content');
+            mainContent.innerHTML = `
+               
+                <h2>Safety Tips</h2>
+                <p>This section provides safety tips for various emergency situations.</p>
+                <ul class="a">
+                <li>Proper hand hygiene: Regularly wash hands with soap and water or use hand sanitizer.</li>
+                <li>Use personal protective equipment (PPE) such as masks, gloves, and gowns when necessary.</li>
+                <li>Follow standard precautions for infection control, including safe handling and disposal of sharps and medical waste.</li>
+                <li>Ensure proper cleaning and disinfection of medical equipment and surfaces.</li>
+                <li>Practice safe medication administration protocols to prevent errors.</li>
+                <li>Maintain a safe patient environment, including fall prevention measures and infection control practices.</li>
+                <li>Adhere to proper ergonomics to prevent musculoskeletal injuries during patient care tasks.</li>
+                <li>Stay informed about safety protocols and guidelines through regular training and updates.</li>
+                <li>Encourage open communication and reporting of safety concerns among healthcare team members.</li>
+                <!-- Add more content here as needed -->
+            `;
+        }
+
+        // Function to display the contact section
+        function displayContact() {
+            const mainContent = document.querySelector('.main-content');
+            mainContent.innerHTML = `
+                <h2>Contact</h2>
+                <p>For assistance or inquiries, please contact us:</p>
+                <ul>
+                    <li>Email: contact@helpline.com</li>
+                    <li>Phone: 123-456-7890</li>
+                </ul>
+            `;
+        }
+
+        // Add event listeners to navigation links
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', handleNavLinkClick);
+        });
+
+        // Display the home section by default
+        displayHome();
+       
+    </script>
+</body>
+</html>
